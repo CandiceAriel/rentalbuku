@@ -1,0 +1,130 @@
+@import './main.scss';
+
+.buku{
+    &__container{
+        width: 30%;
+        margin: 10px;
+        border-radius: 30px;
+        box-sizing: border-box;
+    }
+
+    &__table{
+        box-sizing: border-box;
+        height: 100%;
+        width: 100%;
+        border-radius: 10px;
+    }
+}
+
+.card{
+    border-radius: 30px;
+    padding: 8px;
+    height: 100%;
+    width: 100%;
+
+    &__body{
+        border-radius: 30px;
+    }
+}
+
+.table{
+    box-sizing: border-box;
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+
+    &__item{
+        height: 100%;
+        padding: 20px 0px;
+        vertical-align: middle;
+        font-family: $base-font-family;
+        font-weight: $weight-bold;
+        font-size: 20px;
+        box-sizing: border-box;
+        border-radius: 0px;
+        color: #3a4166;
+        text-align: center;
+
+        &__addtocart{
+            display: table-cell;
+            height: 100%;
+            vertical-align: middle;
+            font-family: $base-font-family;
+            font-weight: $weight-bold;
+            font-size: 20px;
+            box-sizing: border-box;
+            border-radius: 0px;
+            color: #3a4166;
+            text-align: center;
+        }
+    }
+    
+    tr{
+        display: table-row;
+        height: 100%;
+        padding: 0px;
+        justify-content: center;
+        font-family: $base-font-family;
+        box-sizing: border-box;
+    }
+}
+
+.btn{
+    font-family: $base-font-family;
+    
+    &__tambah{
+        box-sizing: border-box;
+        background-color: transparent;
+        margin: 0px 10px;
+        border-radius: 3px;
+        width: 30px;
+        height:35px;
+        border:none;
+        color:darkgrey;
+        font-weight: $weight-bold;
+        font-size: $base-font-size-large;
+    }
+
+    &__kurang{
+        box-sizing: border-box;
+        background-color: transparent;
+        margin: 0px 10px;
+        border-radius: 3px;
+        width: 30px;
+        height:35px;
+        border:none;
+        color:darkgrey;
+        font-weight: $weight-bold;
+        font-size: $base-font-size-x-large;
+    }
+
+    &__update{
+        margin: 0px 0px;
+        border-radius: 5px;
+        width: 30px;
+        height:30px;
+        font-size: 14px;
+        padding: 0pc 5px 0px 0px;
+        font-weight: 900;
+        background: #fb8c00;
+        border: none;
+        color: #fff;
+        text-align: center;
+        text-transform: uppercase;
+
+        &:hover{
+            background-color: #fd7e14;
+        }
+    }
+}
+
+
+.input-harga{
+    margin: 0px 5px;
+    width: 90px;
+    height: 50px;
+    font-size: 20px;
+    font-family: $base-font-family;
+    font-weight: $weight-bold;
+    border: none;
+}
