@@ -1,0 +1,26 @@
+@import './main.scss';
+
+.transaksi{
+    &__container{
+        display: flex;
+        flex-direction: column;
+        border: 1px solid black;
+        margin-top: 10px;
+        padding: 0px auto;
+    }
+    
+    &__btn{
+        &__delete{
+            width: 70px;
+            height: 40px;
+            border-radius: 5px;
+            border: none;
+            background-color: transparent;
+            margin: 23px 10px;
+            float: right;
+            font-family: $base-font-family;
+            font-size: $base-font-size-large;
+            font-weight: $weight-bold;
+        }
+    }
+}

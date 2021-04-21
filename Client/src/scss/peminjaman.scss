@@ -1,0 +1,70 @@
+@import './main.scss';
+
+.peminjaman{
+    font-family: $base-font-family;
+
+    &__content{
+        box-sizing: border-box;
+        width: 100vh;
+        height: 500px;
+        border-radius: 0px;
+        margin-right: 10px;
+    }
+
+    &__wrapper{
+        box-sizing: border-box;
+        width: 100%;
+        height: 250px;
+        margin: 10px 80px;
+        display: flex;
+        justify-content: space-around;
+    }
+
+    &__table{
+        width: 100%;
+        height: 200px;
+        border-radius: 0px;
+        box-sizing: border-box;
+        border: 1px solid darkgray;
+    }
+}
+
+.table{
+    border-radius: 0px;
+    box-sizing: border-box;
+    margin-bottom: 16px;
+
+    &__colum{
+        display: flex;
+        flex-direction: column;
+        font-weight: $weight-semi;
+        font-size: 20px;
+        width: 25%;
+    }
+    
+
+    &__rowproduct{
+        width: 100%;
+        height: 50%;
+        padding: 0px;
+        vertical-align: inherit;
+        display: flex;
+        justify-content: right;
+        box-sizing: border-box;
+        font-size: 20px;
+        background-color: #f7f7f7;
+        border-bottom: 1px solid darkgray;
+    }
+
+    &__rowprice{
+        width: 100%;
+        height: 39px;
+        padding: 0px;
+        vertical-align: inherit;
+        display: flex;
+        justify-content: right;
+        box-sizing: border-box;
+        font-weight: $weight-semi;
+        font-size: $base-font-size-medium;
+    }
+}

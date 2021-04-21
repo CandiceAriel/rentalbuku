@@ -73,9 +73,9 @@ const Listbuku = () => {
             <head>
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
             </head>
-            <body>
+            <div>
             <Navbar />
-            <div className="container-fluid">
+            <div>
             <div className="carousel__container">
             <div class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
@@ -122,7 +122,7 @@ const Listbuku = () => {
               </div>  
             </div>
             </div>
-            </body>
+            </div>
         </div>
     )
 }
