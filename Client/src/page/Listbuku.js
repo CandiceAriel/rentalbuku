@@ -55,29 +55,36 @@ const Listbuku = () => {
             <div className="container-fluid">
             <div className="listbuku__container">
                 <div className="listbuku__category category__wrapper">
-                    <h3 className="text--subheading text--semi-bold">Filter</h3>
-                    <h6>Buku</h6>
-                    {categories.map(categories => (
-                    <ul class="list-group">
-                        <li class="group__item"><Link>{categories.category}</Link></li>
-                    </ul>
-                  ))}
+                    <div className="flex--row">
+                        <h3 className="text--subheading text--semi-bold">Filter</h3>
+                    </div>
+                    <div>
+                        <h6>Buku</h6>
+                        {categories.map(categories => (
+                            <ul class="list-group">
+                                <li class="group__item"><Link>{categories.category}</Link></li>
+                            </ul>
+                        ))}
+                    </div>
                 </div>  
               <div className="listbuku__item item__wrapper">
-              <h3 className="text--subheading text--semi-bold">Katalog Buku</h3>
-              <div className="katalog__wrapper">
-              {buku.map(buku => (
-                  <div className="wrapper">
-                        <Buku key={buku.id}
-                        kodebuku={buku.kodebuku} 
-                        judulbuku={buku.judulbuku} 
-                        pengarang={buku.pengarang}
-                        status={buku.status}
-                        stok={buku.stok}
-                        qty={buku.qty}/>
-                    </div>
-                  ))}
-            </div>
+                <div className="flex--row">
+                    <h3 className="text--subheading text--semi-bold">Katalog Buku</h3>
+                    <Link to="/Addbuku" className="link--small">Add</Link>
+                </div>
+                <div className="katalog__wrapper">
+                {buku.map(buku => (
+                    <div className="wrapper">
+                            <Buku key={buku.id}
+                            kodebuku={buku.kodebuku} 
+                            judulbuku={buku.judulbuku} 
+                            pengarang={buku.pengarang}
+                            status={buku.status}
+                            stok={buku.stok}
+                            qty={buku.qty}/>
+                        </div>
+                    ))}
+                </div>
               </div>  
             </div>
             </div>

@@ -1,0 +1,95 @@
+@import './main.scss';
+
+.addbuku{
+    &__container{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 50px;
+      width: 100%;
+    }
+
+    &__form{
+        font-size: 16px;
+        padding: 10px 20px;
+        margin: 0px 450px;
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+        width: 400px;
+        height: 550px; 
+        background-color: white;
+        border-radius: 8px;
+        border: 1px solid #dadce0;
+        box-shadow: 0 2px 4px 0 lightgrey;
+    }
+
+    &__wrapper{
+      width: 100%;
+      margin-top: 50px;
+      border: 1px solid lightgray;
+    }
+}
+
+.form{
+  &__title{
+    text-align: center;
+    font-size: 16px;
+    line-height: 1.2;
+    font-weight: 700;
+    margin-top: 20px;
+  }
+
+  &__input{
+    border-radius: 2px;
+    height: 42px;
+    padding: 0px 10px;
+    font-size: 16px;
+    margin: 10px 0px;
+    font-family: $base-font-family;
+  }
+
+  &__group{
+      padding: 10px;
+      height: 50px;
+      margin: 50px 0px;
+      display: flex;
+      flex-direction: column;
+  }
+
+  &__button{
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+    margin-top: 20px;
+  }
+
+  &__subtitle{
+      height: 30px;
+      margin-top: 4px;
+      display: flex;
+      justify-content: space-between;
+      text-decoration: none;
+      font-size: $base-font-size;
+  }
+}
+
+.subtitle{
+  font-size: 10px;
+
+  &__linksignin{
+    color: #d71149;
+    text-decoration: none;
+    margin-left: 10px;
+  }
+}
+
+p{
+    font-family: $base-font-family;
+    font-size: 12px;
+    line-height: 16px;
+    color: #3a4166;
+    display: flex;
+    justify-content: flex-start;
+}

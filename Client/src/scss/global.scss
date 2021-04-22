@@ -220,6 +220,35 @@ tr{
     }
 }
 
+.link--small{
+    width: 100px;   
+    height: 44px;
+    padding: 0 28px; 
+    border: 3px solid #e31f52;
+    background: transparent;
+    color: #e31f52;
+    font-family: $base-font-family;
+    font-size: $base-font-size-medium;
+    font-weight: 600;
+    line-height: 1.25;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    padding: 10px 0px;
+    border-radius: 4px;
+
+    &:hover{
+        text-decoration: none;
+        color: #e31f52;
+    }
+}
+
+.flex--row{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+}
 
 .pagination > li > a
 {
