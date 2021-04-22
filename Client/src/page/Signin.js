@@ -1,5 +1,6 @@
 import React,{ useState } from 'react'
 import { Link,useHistory } from 'react-router-dom'
+import Axios from 'axios'
 import '../scss/signin.scss'
 
 const Signin = () => {
@@ -49,7 +50,7 @@ const Signin = () => {
                     <div className="signin-form__group">
                         <input type="password" className="form__input" placeholder="Password" value={password} onChange={updatePassword}/>
                     </div>
-                    <Link to="/" className="link--big">Sign In</Link>
+                    <Link to="/" onClick={buttonClicked} className="link--big">Sign In</Link>
                 </form>
             </body>
         </div>

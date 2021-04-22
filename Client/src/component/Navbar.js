@@ -12,7 +12,7 @@ const Navbar = () => {
                 <nav className="navbar__main">
                     <ul className="navbar__item flex-start">
                         <li><Link to="/" className="link">RentalBuku</Link></li>
-                        <li><Link to="/" className="link">Barang</Link></li>
+                        <li><Link to="/" className="link">Buku</Link></li>
                         <li><Link to="/Profile" className="link">Profile</Link></li>
                         <li><Link to="/Peminjaman" className="link">Transaksi</Link></li>
                     </ul>

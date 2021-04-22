@@ -8,10 +8,11 @@ import Navbar from '../component/Navbar';
 
 const Listbuku = () => {
     const [buku,setBuku] =  useState([])
+    const [bukuid,setBukuid] = useState('')
 
     //Get data upon accessing localhost
     useEffect(() => {
-        Axios.get("http://localhost:3001/buku").then((response) => {
+        Axios.get("http://localhost:3001/detilbuku").then((response) => {
               setBuku(response.data)
           });
       }, [])

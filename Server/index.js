@@ -28,11 +28,19 @@ app.listen(3001, () => {
 });
 
 //Get data Barang from Barang table
-app.get('/buku', function (req, res) {
-    con.query('SELECT * FROM detil_buku', (error, rows,field)  => {
+app.get('/detilbuku', function (req, res) {
+    con.query('SELECT * FROM detil_buku detilbuku INNER JOIN buku WHERE detilbuku.kodebuku=buku.kodebuku', (error, rows,field)  => {
         if (error) throw error;
         return res.send(rows);
     });
+});
+
+//Get data Barang from Barang table
+app.post('/buku', function (req, res) {
+  con.query('SELECT * FROM buku', (error, rows,field)  => {
+      if (error) throw error;
+      return res.send(rows);
+  });
 });
 
 //Add data to tabel Buku
@@ -45,7 +53,7 @@ app.post('/createdetail/', (req,res) => {
     const stok = req.body.stok;
     const stokinput = req.body.stok;
   
-    con.query('INSERT INTO detil_buku (kodebuku, judulbuku,pengarang,kategori,stok,stokinput) VALUES (?,?,?,?,?,?)',
+    con.query('INSERT INTO detil_buku (kodebuku, judulbuku,pengarang,kategori,stok,stokinput) VALUES (?,?,?,?,?,?) ON DUPLICATE KEY UPDATE stokInput = VALUES(stokInput), stok = stok + stokInput',
      [kodebuku,judulbuku,pengarang,kategori,stok,stokinput],
       (err,result) => {
         if(err) {
@@ -65,7 +73,7 @@ app.post('/create', (req,res) => {
     const status = req.body.status;
     req.setTimeout( 1000 * 60 * 10 ); 
   
-    con.query('INSERT INTO buku (kodebuku,status) VALUES (?,?)',
+    con.query('INSERT INTO buku (kodebuku,status) VALUES (?,?) ON DUPLICATE KEY UPDATE status = VALUES(status)',
      [kodebuku,status],
       (err,result) => {
         if(err) {

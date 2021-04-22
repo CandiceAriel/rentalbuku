@@ -17,7 +17,7 @@ const Addbuku = () => {
     const [buku,setBuku] =  useState([]);
 
     useEffect(() => {
-        Axios.get("http://localhost:3001/buku").then((response) => {
+        Axios.get("http://localhost:3001/detilbuku").then((response) => {
               setBuku(response.data)
           });
       }, []);
@@ -49,6 +49,20 @@ const Addbuku = () => {
 
     //Add Barang to DB
     const addBuku = () => {
+        Axios.post("http://localhost:3001/create/",
+        {
+            bukuID: bukuID,
+            kodebuku: kodebuku,
+            status: 'In stock'
+        }).then((response) => {
+            console.log(response.data);
+            alert('Berhasil')
+        });
+        
+        Axios.get("http://localhost:3001/detilbuku").then((response) => {
+              setBuku(response.data)
+          });
+        
         Axios.post("http://localhost:3001/createdetail/",
         {
             kodebuku: kodebuku,
@@ -62,19 +76,9 @@ const Addbuku = () => {
             alert('Berhasil')
         });
 
-        Axios.get("http://localhost:3001/buku").then((response) => {
+        Axios.get("http://localhost:3001/detilbuku").then((response) => {
               setBuku(response.data)
           });
-
-        Axios.post("http://localhost:3001/create/",
-        {
-            bukuID: bukuID,
-            kodebuku: kodebuku,
-            status: 'In stock'
-        }).then((response) => {
-            console.log(response.data);
-            alert('Berhasil')
-        });
     }
 
     return (
