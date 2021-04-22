@@ -1,12 +1,15 @@
 @import './main.scss';
 
 .listpeminjaman{
+    background-color: darkgray;
+    width: 100%;
+    height: 100%;
+
     &__container{
         width: 100%;
-        height: 100%;
+        height: 100vh;
         display: flex;
         flex-direction: column;
-        background-color: darkgray;
     }
 }
 
@@ -15,15 +18,17 @@
     &__wrapper{
         box-sizing: border-box;
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
         border-radius: 8px;
         background-color: transparent;
         box-sizing: border-box;
-        margin-bottom: 50px;
+        margin-bottom: 30px;
         margin-left: 10px;
-        height: 200px;
+        height: 100%;
         width: 95%;
+        
     }
 
     &__buttondelete{

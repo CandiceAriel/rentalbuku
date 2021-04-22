@@ -1,62 +1,20 @@
 import React, { useState,useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import Axios from 'axios';
+
 import Buku from './Buku';
 import '../scss/listbuku.scss'
 import Navbar from '../component/Navbar';
 
 const Listbuku = () => {
-    const [buku,setBuku] =  useState([
-        {
-            bookID: '0001',
-            kodebuku: '1001',
-            judulbuku: 'Percy Jackson',
-            pengarang: 'Rick Riordan',
-            stok: 10,
-            status: 'Avavilable'
-        },
-        {
-            bookID: '0001',
-            kodebuku: '1001',
-            judulbuku: 'Percy Jackson',
-            pengarang: 'Rick Riordan',
-            stok: 10
-        },
-        {
-            bookID: '0001',
-            kodebuku: '1001',
-            judulbuku: 'Percy Jackson',
-            pengarang: 'Rick Riordan',
-            stok: 10
-        },
-        {
-            bookID: '0001',
-            kodebuku: '1001',
-            judulbuku: 'Percy Jackson',
-            pengarang: 'Rick Riordan',
-            stok: 10
-        },
-        {
-            bookID: '0001',
-            kodebuku: '1001',
-            judulbuku: 'Percy Jackson',
-            pengarang: 'Rick Riordan',
-            stok: 10
-        },
-        {
-            bookID: '0001',
-            kodebuku: '1001',
-            judulbuku: 'Percy Jackson',
-            pengarang: 'Rick Riordan',
-            stok: 10
-        },
-        {
-            bookID: '0001',
-            kodebuku: '1001',
-            judulbuku: 'Percy Jackson',
-            pengarang: 'Rick Riordan',
-            stok: 10
-        }
-    ])
+    const [buku,setBuku] =  useState([])
+
+    //Get data upon accessing localhost
+    useEffect(() => {
+        Axios.get("http://localhost:3001/buku").then((response) => {
+              setBuku(response.data)
+          });
+      }, [])
 
     const [categories,setCategories] =  useState([
         {
@@ -109,11 +67,12 @@ const Listbuku = () => {
               <h3 className="text--subheading text--semi-bold">Katalog Buku</h3>
               <div className="katalog__wrapper">
               {buku.map(buku => (
-                  <div className="col-m-12">
+                  <div className="wrapper">
                         <Buku key={buku.id}
                         kodebuku={buku.kodebuku} 
                         judulbuku={buku.judulbuku} 
                         pengarang={buku.pengarang}
+                        status={buku.status}
                         stok={buku.stok}
                         qty={buku.qty}/>
                     </div>

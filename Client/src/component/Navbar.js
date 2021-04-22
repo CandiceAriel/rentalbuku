@@ -14,7 +14,7 @@ const Navbar = () => {
                         <li><Link to="/" className="link">RentalBuku</Link></li>
                         <li><Link to="/" className="link">Barang</Link></li>
                         <li><Link to="/Profile" className="link">Profile</Link></li>
-                        <li><Link to="/Transaksi" className="link">Transaksi</Link></li>
+                        <li><Link to="/Peminjaman" className="link">Transaksi</Link></li>
                     </ul>
                     <ul className="navbar__main navbar__item">
                     </ul>

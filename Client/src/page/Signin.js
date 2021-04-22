@@ -43,13 +43,13 @@ const Signin = () => {
                             <span><Link to="/Signup" className="subtitle__linksignin">Daftar disini</Link></span>
                         </p>
                     </div>
-                    <div className="form__group">
+                    <div className="signin-form__group">
                         <input type="email" className="form__input" placeholder="E-mail" value={email} onChange={updateEmail}/>
                     </div>
-                    <div className="form__group">
+                    <div className="signin-form__group">
                         <input type="password" className="form__input" placeholder="Password" value={password} onChange={updatePassword}/>
                     </div>
-                    <button type="submit" className="btn" onClick={buttonClicked}>Login</button>
+                    <Link to="/" className="link--big">Sign In</Link>
                 </form>
             </body>
         </div>

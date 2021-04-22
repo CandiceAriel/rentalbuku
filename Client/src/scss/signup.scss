@@ -41,11 +41,11 @@
   }
 
   &__group{
-      padding: 0px;
-      height: 100px;
-      
+      padding: 20px;
+      height: 52px;
       display: flex;
       flex-direction: column;
+      border: 1px solid black;
   }
 
   &__button{

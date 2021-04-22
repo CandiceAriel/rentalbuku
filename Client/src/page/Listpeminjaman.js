@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 import Peminjaman from './Peminjaman';
+import Detilpeminjaman from './Detilpeminjaman';
 import Navbar from '../component/Navbar';
 import '../scss/listpeminjaman.scss'
 
@@ -9,13 +10,59 @@ const Listpeminjaman = () => {
     const [peminjaman,setPeminjaman] = useState ([
         {
             kode: 'Fi090767',
-            total: 10000,
+            judul: 'percy jackson',
+            pengarang: 'Rick Riordan',
+            harga: 10000,
+            jumlah: 1,
+            totaltrans: 10000,
+            status: "selesai",
+            
+        },
+        {
+            kode: 'Fi090767',
+            judul: 'percy jackson',
+            pengarang: 'Rick Riordan',
+            harga: 10000,
+            jumlah: 1,
+            totaltrans: 10000,
             status: "selesai"
         },
         {
             kode: 'Fi090767',
-            total: 10000,
+            judul: 'percy jackson',
+            pengarang: 'Rick Riordan',
+            harga: 10000,
+            jumlah: 1,
+            totaltrans: 10000,
             status: "selesai"
+        },
+        {
+            kode: 'Fi090767',
+            judul: 'percy jackson',
+            pengarang: 'Rick Riordan',
+            harga: 10000,
+            jumlah: 1,
+            totaltrans: 10000,
+            status: "selesai"
+        }
+    ])
+
+    const [detilpeminjaman,setDetilpeminjaman] = useState ([
+        {
+            kode: 'tu0130',
+            judul:'Percy Jackson',
+            pengarang: 10000,
+            harga: "selesai",
+            jumlah: 10,
+            status: 'selesai'
+        },
+        {
+            kode: 'tu0130',
+            judul: 'Percy Jackson',
+            pengarang: 10000,
+            harga: "selesai",
+            jumlah: 10,
+            status: 'selesai'
         }
     ])
 
@@ -33,19 +80,34 @@ const Listpeminjaman = () => {
                         <nav aria-label="Page navigation example">
                             <ul class="pagination">
                                 <li class="page-item"><Link to="/Peminjaman" class="page-link text--semi-bold">Peminjaman</Link></li>
-                                <li class="page-item"><Link class="page-link text--semi-bold">Pengembalian</Link></li>
                             </ul>
                         </nav>
                 </div>
                 <div className="container-fluid">
-                    {peminjaman.map(peminjaman => (
-                        <div className="listpeminjaman-item__wrapper" key={peminjaman.kode}>
-                            <Peminjaman userID={peminjaman.kode}
-                                kode={peminjaman.kode}  
-                                total={peminjaman.total}
-                                status={peminjaman.status}/>
-                        </div>
-                    ))}
+                    <div className="listpeminjaman-item__wrapper" key={peminjaman.kode}>
+                        {peminjaman.map(peminjaman => (
+                                <div className="listpeminjaman-item__wrapper" key={peminjaman.transaksiID}>
+                                <Peminjaman transaksiID={peminjaman.transaksiID}
+                                    memberID={peminjaman.memberID}  
+                                    totaltrans={peminjaman.totaltrans}
+                                    status={peminjaman.status}
+                                    tglpinjam={peminjaman.tglpinjam}
+                                    tglkembali={peminjaman.tglkembali}/>
+
+                                {detilpeminjaman.map(detilpeminjaman => (
+                                    <Detilpeminjaman detiltransaksiID={detilpeminjaman.detiltransaksiID}
+                                        transaksiID={detilpeminjaman.transaksiID}  
+                                        kodebuku = {detilpeminjaman.kodebuku}
+                                        judul={detilpeminjaman.judul}  
+                                        pengarang={detilpeminjaman.pengarang}
+                                        harga={detilpeminjaman.harga}
+                                        jumlah={detilpeminjaman.jumlah}
+                                        total={detilpeminjaman.total}
+                                        status={detilpeminjaman.status}/>
+                                ))}
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </div>
         </div>

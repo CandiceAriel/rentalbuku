@@ -1,21 +1,47 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
 import '../scss/peminjaman.scss'
 
-const Buku = ({kode,total,status}) => {
+const Peminjaman = ({transaksiID,totaltrans,status}) => {
     const pinjambuku = () => {
-        alert(kode)
+        alert(transaksiID)
     }
 
     return (
         <div className="peminjaman__container">
             <table className="peminjaman__table">
                 <tbody>
-                    <tr align="center" className="peminjaman__table table__rowproduct"><td className="table__colum"><p className="text--paragraph text--uppercase">Kode Pesanan</p><p className="text--paragraph">{kode}</p><p className="text--paragraph">Tanggal</p></td><td className="table__colum"><p className="text--paragraph text--uppercase">Kode Pesanan</p><p className="text--paragraph">{total}</p><p className="text--paragraph"></p></td><td className="table__colum"><p className="text--paragraph text--uppercase">Status Peminjaman</p><p className="text--paragraph">{status}</p><p className="text--paragraph"></p></td></tr>
+                    <tr align="center" className="peminjaman__table table__rowproduct">
+                        <td className="table__colum">
+                            <p className="text--uppercase text--small text--lightgrey">Kode Pesanan</p>
+                            <p className="text--medium">ID transaksi</p>
+                            <p className="text--paragraph text--lightgrey">tgl pinjam</p>
+                        </td>
+                        <td className="table__colum">
+                            <p className="text--uppercase text--small text--lightgrey">Total</p>
+                            <p className="text--medium">{totaltrans}</p>
+                            <p className="text--paragraph"></p>
+                        </td>
+                        <td className="table__colum">
+                            <p className="text--uppercase text--small text--lightgrey">Tanggal Kembali</p>
+                            <p className="text--medium">tglKembali</p>
+                            <p className="text--paragraph"></p>
+                        </td>
+                        <td className="table__colum">
+                            <p className="text--uppercase text--small text--lightgrey">Status</p>
+                            <p className="text--medium">{status}</p>
+                            <p className="text--paragraph"></p>
+                        </td>
+                        <td className="table__colum">
+                            <p className="text--uppercase"></p>
+                            <p className="text--paragraph"></p>
+                            <p className="text--paragraph"></p>
+                        </td>
+                    </tr>
+
                 </tbody>
             </table>
         </div>
     )
 }
 
-export default Buku
+export default Peminjaman

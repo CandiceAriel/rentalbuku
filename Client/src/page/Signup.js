@@ -33,7 +33,7 @@ const Signup = () => {
                             <p>Misal: 081234567890, atau nama@email.com</p>
                         </div>
                     </div>
-                    <button type="submit" className="btn">Daftar</button>
+                    <Link className="link--big">Daftar</Link>
                     <p className="subtitle">
                         Sudah punya akun?
                         <span><Link to="/SignIn" className="subtitle__link">Login</Link></span>
