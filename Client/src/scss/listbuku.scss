@@ -97,40 +97,15 @@
     }
 }
 
-.form{
-  
-    &__input{
-      border-radius: 2px;
-      height: 42px;
-      width: 60%;
-      padding: 0px 10px;
-      font-size: 16px;
-      font-family: $base-font-family;
-    }
-  
-    &__group{
-        height: 50px;
-        margin: 60px 0px;
-        display: flex;
-        flex-direction: column;
-        border: 1px solid #e31f52;
-        padding: 0px;
-    }
+.input-member{
+    width: 70%;
+    height: 100%;
+}
 
-    &__link{
-        border: 3px solid #e31f52;
-        border-radius: 4px;
-        background: transparent;
-        color: #e31f52;
-        width: 50px;
-        height: 45px;
-        padding: 10px;
-        margin-left: 325px;
-        align-items: flex-end;
-
-        &:hover{
-            text-decoration: none;
-            color: #e31f52;
-        }
-    }
+.group-input{
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }

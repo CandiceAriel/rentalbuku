@@ -6,7 +6,7 @@
         width: 30%;
         height: 40px;
         display: flex;
-        justify-content: flex-end;
+        align-items: center;
         padding: 5px 0px;
     }
 
@@ -37,6 +37,7 @@
     &__main{
         list-style: none;
         display: flex;
+        justify-content: space-between;
         align-items: center;
         width: 100%;
         height: 40px;
@@ -54,6 +55,18 @@
     font-size: 14px;
     margin-right: 20px;
     margin-left: 20px;
+
+    &:hover{
+        color: black;
+        font-weight:  600;
+        font-family: $base-font-family;
+        text-decoration: none;
+    }
+}
+
+.flex-end{
+    display: flex;
+    justify-content: flex-end;
 }
 
 .flex-start{

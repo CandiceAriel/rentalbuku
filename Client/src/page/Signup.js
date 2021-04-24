@@ -40,10 +40,6 @@ const Signup = () => {
 
     return (
         <div className="signup__container">
-            <head>
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossOrigin="anonymous"/>
-            </head>
-            <body>
                 <div className="signup__title">
                     <h3>BookRental</h3>
                 </div>                
@@ -64,7 +60,6 @@ const Signup = () => {
                         <span><Link to="/SignIn" className="subtitle__link">Login</Link></span>
                     </p>
                 </form>
-            </body>
         </div>
     )
 }

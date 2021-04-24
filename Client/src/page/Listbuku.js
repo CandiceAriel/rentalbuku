@@ -37,12 +37,7 @@ const Listbuku = () => {
 
     return (
         <div>
-            <head>
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossOrigin="anonymous"/>
-            </head>
-            <div>
             <Navbar />
-            <div>
             <div className="carousel__container">
             <div className="carousel slide" data-ride="carousel">
                 <div className="carousel-inner">
@@ -59,7 +54,6 @@ const Listbuku = () => {
                     <span className="sr-only">Next</span>
                 </a>
                 </div>
-            </div>
             </div>
             <div className="container-fluid">
             <div className="listbuku__container">
@@ -81,9 +75,9 @@ const Listbuku = () => {
                     <h3 className="text--subheading text--semi-bold">Katalog Buku</h3>
                     <Link to="/Addbuku" className="link--small">Add</Link>
                 </div>
-                <div>
-                    <span><input type="text" className="form__input" placeholder="Masukkan member" value={memberid} onChange={updateMemberid}/>
-                    <Link className="form__link" onClick={tambahmember}>+</Link> </span>
+                <div className="group-input">
+                    <input type="text" className="input-member" placeholder="Masukkan member" value={memberid} onChange={updateMemberid}/>
+                    <Link className="link--small" onClick={tambahmember}>+</Link>
                 </div>
                 <div className="katalog__wrapper">
                 {buku.map(buku => (
@@ -99,7 +93,6 @@ const Listbuku = () => {
                     ))}
                 </div>
               </div>  
-            </div>
             </div>
             </div>
         </div>

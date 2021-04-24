@@ -6,15 +6,10 @@ import '../scss/home.scss'
 const home = () => {
     return (
         <div>
-            <head>
+            <Navbar />
+            <div className="home__container">
 
-            </head>
-            <body>
-                <Navbar />
-                <div className="home__container">
-
-                </div>
-            </body>
+            </div>
         </div>
     )
 }

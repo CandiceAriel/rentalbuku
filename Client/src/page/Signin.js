@@ -47,11 +47,7 @@ const Signin = () => {
     }
 
     return (
-        <div className="signin__container">
-            <head>
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossOrigin="anonymous"/>
-            </head>
-            <body>                
+        <div className="signin__container">        
                 <form className="signin__form">
                     <h5 className="signin__title">BookRental</h5>
                     <h5 className="form__title">Silahkan masuk dengan akun kamu</h5>
@@ -69,7 +65,6 @@ const Signin = () => {
                     </div>
                     <button onClick={signin} className="link--big">Sign In</button>
                 </form>
-            </body>
         </div>
     )
 }
