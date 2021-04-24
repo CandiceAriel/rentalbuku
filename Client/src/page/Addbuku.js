@@ -12,12 +12,12 @@ const Addbuku = () => {
     const [pengarang,setPengarang] = useState('');
     const [kategori,setKategori] = useState('');
     const [stokinput,setStokinput] = useState('');
-    const [status,setStatus] = useState('In Stock');
+    const [status,setStatus] = useState('InStock');
 
     const [buku,setBuku] =  useState([]);
 
     useEffect(() => {
-        Axios.get("http://localhost:3001/detilbuku").then((response) => {
+        Axios.get("http://localhost:3001/buku").then((response) => {
               setBuku(response.data)
           });
       }, []);
@@ -49,34 +49,22 @@ const Addbuku = () => {
 
     //Add Barang to DB
     const addBuku = () => {
-        Axios.post("http://localhost:3001/create/",
-        {
-            bukuID: bukuID,
-            kodebuku: kodebuku,
-            status: 'In stock'
-        }).then((response) => {
-            console.log(response.data);
-            alert('Berhasil')
-        });
         
-        Axios.get("http://localhost:3001/detilbuku").then((response) => {
-              setBuku(response.data)
-          });
-        
-        Axios.post("http://localhost:3001/createdetail/",
+        Axios.post("http://localhost:3001/addbuku/",
         {
             kodebuku: kodebuku,
             judulbuku: judulbuku,
             pengarang: pengarang,
             kategori:kategori,
             stok: parseInt(stokinput),
-            stokinput: parseInt(stokinput)
+            stokinput: parseInt(stokinput),
+            status:status
         }).then((response) => {
             console.log(response.data);
             alert('Berhasil')
         });
 
-        Axios.get("http://localhost:3001/detilbuku").then((response) => {
+        Axios.get("http://localhost:3001/buku").then((response) => {
               setBuku(response.data)
           });
     }
@@ -84,7 +72,7 @@ const Addbuku = () => {
     return (
         <div>
             <head>
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossOrigin="anonymous"/>
             </head>
             <Navbar />
             <div className="addbuku__container">                

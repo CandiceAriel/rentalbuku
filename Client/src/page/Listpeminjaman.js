@@ -69,7 +69,7 @@ const Listpeminjaman = () => {
     return (
         <div>
             <head>
-                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossOrigin="anonymous"/>
             </head>
             <div>
             <Navbar />
@@ -84,7 +84,7 @@ const Listpeminjaman = () => {
                         </nav>
                 </div>
                 <div className="container-fluid">
-                    <div className="listpeminjaman-item__wrapper" key={peminjaman.kode}>
+                    <div className="listpeminjaman-item__wrapper">
                         {peminjaman.map(peminjaman => (
                                 <div className="listpeminjaman-item__wrapper" key={peminjaman.transaksiID}>
                                 <Peminjaman transaksiID={peminjaman.transaksiID}
@@ -92,7 +92,7 @@ const Listpeminjaman = () => {
                                     totaltrans={peminjaman.totaltrans}
                                     status={peminjaman.status}
                                     tglpinjam={peminjaman.tglpinjam}
-                                    tglkembali={peminjaman.tglkembali}/>
+                                    duedate={peminjaman.duedate}/>
 
                                 {detilpeminjaman.map(detilpeminjaman => (
                                     <Detilpeminjaman detiltransaksiID={detilpeminjaman.detiltransaksiID}

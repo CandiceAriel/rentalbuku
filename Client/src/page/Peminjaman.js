@@ -22,8 +22,8 @@ const Peminjaman = ({transaksiID,totaltrans,status}) => {
                             <p className="text--paragraph"></p>
                         </td>
                         <td className="table__colum">
-                            <p className="text--uppercase text--small text--lightgrey">Tanggal Kembali</p>
-                            <p className="text--medium">tglKembali</p>
+                            <p className="text--uppercase text--small text--lightgrey">Due date</p>
+                            <p className="text--medium">due date</p>
                             <p className="text--paragraph"></p>
                         </td>
                         <td className="table__colum">

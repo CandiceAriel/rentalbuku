@@ -8,11 +8,11 @@ import Navbar from '../component/Navbar';
 
 const Listbuku = () => {
     const [buku,setBuku] =  useState([])
-    const [bukuid,setBukuid] = useState('')
+    const [memberid,setMemberid] = useState('')
 
     //Get data upon accessing localhost
     useEffect(() => {
-        Axios.get("http://localhost:3001/detilbuku").then((response) => {
+        Axios.get("http://localhost:3001/buku").then((response) => {
               setBuku(response.data)
           });
       }, [])
@@ -26,29 +26,37 @@ const Listbuku = () => {
         }
     ])
 
+    //update Password value
+    const updateMemberid = e => {
+        setMemberid(e.target.value);
+    }
+
+    const tambahmember = () => {
+        localStorage.setItem('memberid', JSON.stringify(memberid))
+    }
 
     return (
-        <div >
+        <div>
             <head>
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossOrigin="anonymous"/>
             </head>
             <div>
             <Navbar />
             <div>
             <div className="carousel__container">
-            <div class="carousel slide" data-ride="carousel">
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                    <img class="d-block w-100" src="./booknew.png" alt="First slide"/>
+            <div className="carousel slide" data-ride="carousel">
+                <div className="carousel-inner">
+                    <div className="carousel-item active">
+                    <img className="d-block w-100" src="./booknew.png" alt="First slide"/>
                     </div>
                 </div>
-                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
+                <a className="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                    <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span className="sr-only">Previous</span>
                 </a>
-                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
+                <a className="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                    <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span className="sr-only">Next</span>
                 </a>
                 </div>
             </div>
@@ -62,20 +70,24 @@ const Listbuku = () => {
                     <div>
                         <h6>Buku</h6>
                         {categories.map(categories => (
-                            <ul class="list-group">
-                                <li class="group__item"><Link>{categories.category}</Link></li>
+                            <ul className="list-group" key={categories.category}>
+                                <li className="group__item" key={categories.category}><Link>{categories.category}</Link></li>
                             </ul>
                         ))}
                     </div>
                 </div>  
               <div className="listbuku__item item__wrapper">
-                <div className="flex--row">
+                <div className="flex--row katalog__title">
                     <h3 className="text--subheading text--semi-bold">Katalog Buku</h3>
                     <Link to="/Addbuku" className="link--small">Add</Link>
                 </div>
+                <div>
+                    <span><input type="text" className="form__input" placeholder="Masukkan member" value={memberid} onChange={updateMemberid}/>
+                    <Link className="form__link" onClick={tambahmember}>+</Link> </span>
+                </div>
                 <div className="katalog__wrapper">
                 {buku.map(buku => (
-                    <div className="wrapper">
+                    <div className="wrapper" key={buku.id}>
                             <Buku key={buku.id}
                             kodebuku={buku.kodebuku} 
                             judulbuku={buku.judulbuku} 

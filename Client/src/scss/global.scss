@@ -78,13 +78,13 @@ tr{
 }
 
 .wrapper{
-    display: flex;
-    flex-direction: column;
+    display: grid;
     background-color: white;
     border-radius: 10px;
     width: 35%;
     height: 200px;
     margin-bottom: 20px;
+    margin-right: 20px;
 }
 
 .container{

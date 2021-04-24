@@ -6,18 +6,15 @@ import '../scss/signin.scss'
 const Signin = () => {
     const [user,setUser]=useState([]);
 
-    const [userID,setUserID] = useState('');
-    const [nama,setNama] = useState('');
-    const [noHP,setNoHP] = useState('');
-    const [email,setEmail] = useState('');
+    const [username,setUsername] = useState('');
     const [password,setPassword] = useState('');
 
     const history = useHistory();
     const navigateToHome = () => history.push('/');
 
     //update Email value
-    const updateEmail = e => {
-        setEmail(e.target.value);
+    const updateUsername = e => {
+        setUsername(e.target.value);
     }
 
     //update Password value
@@ -29,10 +26,30 @@ const Signin = () => {
         navigateToHome();
     }
 
+    const signin = e => {
+        e.preventDefault();
+        Axios.post("http://localhost:3001/signin",
+        {
+            username: username,
+            password: password
+        }).then((response) => {
+            if(response.data.message ){
+                console.log(response.data.message)
+            }else {
+                localStorage.setItem('signindata', JSON.stringify(response.data));
+                var admindata = JSON.parse(localStorage.getItem('signindata'));
+                delete admindata[0].password;
+
+                localStorage.setItem('signindata', JSON.stringify(admindata));
+            }
+            navigateToHome();
+        });
+    }
+
     return (
         <div className="signin__container">
             <head>
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossOrigin="anonymous"/>
             </head>
             <body>                
                 <form className="signin__form">
@@ -45,12 +62,12 @@ const Signin = () => {
                         </p>
                     </div>
                     <div className="signin-form__group">
-                        <input type="email" className="form__input" placeholder="E-mail" value={email} onChange={updateEmail}/>
+                        <input type="email" className="form__input" placeholder="Username" value={username} onChange={updateUsername}/>
                     </div>
                     <div className="signin-form__group">
                         <input type="password" className="form__input" placeholder="Password" value={password} onChange={updatePassword}/>
                     </div>
-                    <Link to="/" onClick={buttonClicked} className="link--big">Sign In</Link>
+                    <button onClick={signin} className="link--big">Sign In</button>
                 </form>
             </body>
         </div>
