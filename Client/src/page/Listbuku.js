@@ -10,6 +10,13 @@ const Listbuku = () => {
     const [buku,setBuku] =  useState([])
     const [memberid,setMemberid] = useState('')
 
+    var today = new Date().toISOString().slice(0, 10);
+
+    var myDate = new Date(today);
+        myDate.setDate(myDate.getDate() + parseInt(7));
+    
+    var duedate = myDate.toISOString().slice(0, 10)
+
     //Get data upon accessing localhost
     useEffect(() => {
         Axios.get("http://localhost:3001/buku").then((response) => {
@@ -33,6 +40,29 @@ const Listbuku = () => {
 
     const tambahmember = () => {
         localStorage.setItem('memberid', JSON.stringify(memberid))
+
+        Axios.post("http://localhost:3001/transaksi",
+         {
+            memberid: memberid,
+            tglpinjam: today,
+            duedate: duedate,
+            status: 'Berhasil',
+         }).then((response) => {
+            alert("Good");
+
+            Axios.post("http://localhost:3001/retrievetransaksiid",
+            {
+                memberid: memberid
+            }).then((response) => {
+                if(response.data.message ){
+                    console.log(response.data.message)
+                } else {
+                    if(response.data){
+                        localStorage.setItem('transaksi', JSON.stringify(response.data));
+                    }
+                }
+            });
+        });
     }
 
     return (

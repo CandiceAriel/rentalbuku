@@ -14,7 +14,7 @@ const con = mysql.createConnection({
   user: "root",
   password: "",
   database: "Rental Buku",
-  multipleStatements: true
+  dateStrings: 'date'
 });
 
 //Connect to DB
@@ -76,7 +76,7 @@ app.post('/signin', function(req,res) {
     );
 });
 
-//Get data Barang from Barang table
+//Get data Buku from table Buku
 app.get('/buku', function (req, res) {
   con.query('SELECT * FROM buku', (error, rows,field)  => {
       if (error) throw error;
@@ -145,4 +145,73 @@ app.put("/updatestok", (req, res) => {
       }
     }
   );
+});
+
+app.post('/retrievetransaksiid', function(req,res) {
+  const memberid = req.body.memberid;
+
+  con.query('SELECT transaksiid FROM transaksi WHERE memberid = ?', 
+      memberid, 
+      (err, result) => {
+        if (err) {
+          res.send({ err: err });
+        }
+  
+        if (result.length > 0) {
+              res.send(result);
+        } else {
+          res.send({ message: "Cart is empty" });
+        }
+      }
+    );
+});
+
+//Get data Barang from Barang table
+app.get('/retrievetransaksi', function (req, res) {
+  con.query('SELECT * FROM transaksi', (error, rows,field)  => {
+      if (error) throw error;
+      return res.send(rows);
+  });
+});
+
+app.post('/transaksidetail/', (req,res) => {
+  const transaksiid = req.body.transaksiid;
+  const kodebuku = req.body.kodebuku;
+  const judulbuku = req.body.judulbuku;
+  const harga = req.body.harga;
+  const jumlah = req.body.jumlah;
+  const subtotal = req.body.subtotal;
+  const status = req.body.status;
+
+
+  con.query('INSERT INTO detiltransaksi (transaksiid,kodebuku,judulbuku,harga,jumlah,subtotal,status) VALUES (?,?,?,?,?,?,?)',
+   [transaksiid,kodebuku,judulbuku,harga,jumlah,subtotal,status],
+    (err,result) => {
+      if(err) {
+        console.log(err);
+      }else {
+          console.log(result);
+        res.send("Peminjaman diproses");
+      }
+    }
+  );
+});
+
+app.post('/retrievedetiltransaksi', function(req,res) {
+  const 	transaksiid = req.body.	transaksiid;
+
+  con.query('SELECT * FROM detiltransaksi WHERE transaksiid = ?', 
+    transaksiid, 
+      (err, result) => {
+        if (err) {
+          res.send({ err: err });
+        }
+  
+        if (result.length > 0) {
+              res.send(result);
+        } else {
+          res.send({ message: "Cart is empty" });
+        }
+      }
+    );
 });

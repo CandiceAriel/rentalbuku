@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import Axios from 'axios'
 
 import Peminjaman from './Peminjaman';
 import Detilpeminjaman from './Detilpeminjaman';
@@ -7,64 +8,30 @@ import Navbar from '../component/Navbar';
 import '../scss/listpeminjaman.scss'
 
 const Listpeminjaman = () => {
-    const [peminjaman,setPeminjaman] = useState ([
-        {
-            kode: 'Fi090767',
-            judul: 'percy jackson',
-            pengarang: 'Rick Riordan',
-            harga: 10000,
-            jumlah: 1,
-            totaltrans: 10000,
-            status: "selesai",
-            
-        },
-        {
-            kode: 'Fi090767',
-            judul: 'percy jackson',
-            pengarang: 'Rick Riordan',
-            harga: 10000,
-            jumlah: 1,
-            totaltrans: 10000,
-            status: "selesai"
-        },
-        {
-            kode: 'Fi090767',
-            judul: 'percy jackson',
-            pengarang: 'Rick Riordan',
-            harga: 10000,
-            jumlah: 1,
-            totaltrans: 10000,
-            status: "selesai"
-        },
-        {
-            kode: 'Fi090767',
-            judul: 'percy jackson',
-            pengarang: 'Rick Riordan',
-            harga: 10000,
-            jumlah: 1,
-            totaltrans: 10000,
-            status: "selesai"
-        }
-    ])
+    const [peminjaman,setPeminjaman] = useState ([])
 
-    const [detilpeminjaman,setDetilpeminjaman] = useState ([
-        {
-            kode: 'tu0130',
-            judul:'Percy Jackson',
-            pengarang: 10000,
-            harga: "selesai",
-            jumlah: 10,
-            status: 'selesai'
-        },
-        {
-            kode: 'tu0130',
-            judul: 'Percy Jackson',
-            pengarang: 10000,
-            harga: "selesai",
-            jumlah: 10,
-            status: 'selesai'
-        }
-    ])
+    const [detilpeminjaman,setDetilpeminjaman] = useState ([])
+
+
+    //Get data upon accessing localhost
+    useEffect(() => {
+        var datatransaksi = JSON.parse(localStorage.getItem('transaksi'));
+
+        Axios.get("http://localhost:3001/retrievetransaksi").then((response) => {
+              setPeminjaman(response.data)
+        });
+
+          Axios.post("http://localhost:3001/retrievedetiltransaksi",
+          {
+            transaksiid: datatransaksi[0].transaksiid,
+          }).then((response) => {
+          if(response.data.message ){
+            console.log(response.data.message)
+          }else {
+            setDetilpeminjaman(response.data)
+          }
+        });
+      }, [])
 
     return (
         <div>
@@ -82,22 +49,20 @@ const Listpeminjaman = () => {
                     <div className="listpeminjaman-item__wrapper">
                         {peminjaman.map(peminjaman => (
                                 <div className="listpeminjaman-item__wrapper" key={peminjaman.transaksiID}>
-                                <Peminjaman transaksiID={peminjaman.transaksiID}
-                                    memberID={peminjaman.memberID}  
-                                    totaltrans={peminjaman.totaltrans}
+                                <Peminjaman transaksiid={peminjaman.transaksiid}
+                                    memberid={peminjaman.memberid}
                                     status={peminjaman.status}
                                     tglpinjam={peminjaman.tglpinjam}
                                     duedate={peminjaman.duedate}/>
 
                                 {detilpeminjaman.map(detilpeminjaman => (
-                                    <Detilpeminjaman detiltransaksiID={detilpeminjaman.detiltransaksiID}
-                                        transaksiID={detilpeminjaman.transaksiID}  
+                                    <Detilpeminjaman detiltransaksiid={detilpeminjaman.detiltransaksiid}
+                                        transaksiid={detilpeminjaman.transaksiid}  
                                         kodebuku = {detilpeminjaman.kodebuku}
-                                        judul={detilpeminjaman.judul}  
-                                        pengarang={detilpeminjaman.pengarang}
+                                        judulbuku={detilpeminjaman.judulbuku}
                                         harga={detilpeminjaman.harga}
                                         jumlah={detilpeminjaman.jumlah}
-                                        total={detilpeminjaman.total}
+                                        subtotal={detilpeminjaman.subtotal}
                                         status={detilpeminjaman.status}/>
                                 ))}
                             </div>

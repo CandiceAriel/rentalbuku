@@ -14,20 +14,24 @@ const Buku = ({bookID, kodebuku,judulbuku, pengarang,status,stok}) => {
     
     var duedate = myDate.toISOString().slice(0, 10)
 
-    const pinjambuku = (kodebuku) => {
-        var memberid = JSON.parse(localStorage.getItem('memberid'));
+    const [harga,setHarga] = useState(1000);
+    const [jumlah,setJumlah] = useState(1);
 
-        Axios.post("http://localhost:3001/transaksi",
-         {
+    const pinjambuku = (kodebuku) => {
+        var datatransaksi = JSON.parse(localStorage.getItem('transaksi'));
+        Axios.post("http://localhost:3001/transaksidetail",
+        {
+            transaksiid: datatransaksi[0].transaksiid,
             kodebuku: kodebuku,
-            memberid: memberid,
-            tglpinjam: today,
-            duedate: duedate,
+            judulbuku: judulbuku,
+            harga: 10000,
+            jumlah: 1,
+            subtotal: harga*jumlah,
             status: 'Berhasil',
-         }).then((response) => {
+        }).then((response) => {
             {updatestok(kodebuku);}
             alert("Good");
-         });
+        });
     }
 
     //Update Barang to DB based on new value

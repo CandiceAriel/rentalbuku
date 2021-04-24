@@ -1,10 +1,7 @@
 import React, { useState } from 'react'
 import '../scss/peminjaman.scss'
 
-const Detilpeminjaman = ({kode,judul,pengarang,harga,jumlah,total,status}) => {
-    const pinjambuku = () => {
-        alert(kode)
-    }
+const Detilpeminjaman = ({kodebuku,judulbuku,harga,jumlah,subtotal,status}) => {
 
     return (
         <div className="peminjaman__container">
@@ -13,8 +10,7 @@ const Detilpeminjaman = ({kode,judul,pengarang,harga,jumlah,total,status}) => {
                     <tr align="center" className="peminjaman__table table__rowproduct bg--white">
                         <td className="table__colum">
                             <p className="text--uppercase text--small text--lightgrey">Judul Buku</p>
-                            <p className="text--medium">{judul}</p>
-                            <p className="text--paragrmediumaph">{pengarang}</p>
+                            <p className="text--medium">{judulbuku}</p>
                         </td>
                         <td className="table__colum">
                             <p className="text--uppercase text--small text--lightgrey">Harga</p>
