@@ -166,6 +166,25 @@ app.post('/retrievetransaksiid', function(req,res) {
     );
 });
 
+app.post('/retrieveduedate', function(req,res) {
+  const transaksiid = req.body.transaksiid;
+
+  con.query('SELECT duedate FROM transaksi WHERE transaksiid = ?', 
+      transaksiid, 
+      (err, result) => {
+        if (err) {
+          res.send({ err: err });
+        }
+  
+        if (result.length > 0) {
+              res.send(result);
+        } else {
+          res.send({ message: "Cart is empty" });
+        }
+      }
+    );
+});
+
 //Get data Barang from Barang table
 app.get('/retrievetransaksi', function (req, res) {
   con.query('SELECT * FROM transaksi', (error, rows,field)  => {

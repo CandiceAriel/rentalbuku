@@ -34,18 +34,18 @@ const Listpeminjaman = () => {
       }, [])
 
     return (
-        <div>
+        <div >
             <Navbar />
             <div className="container-fluid bg--lightgrey">
                 <div className="header__container">
                     <h3 className="text--bold text--xxl">Transaksi</h3>
                         <nav aria-label="Page navigation example">
-                            <ul class="pagination">
-                                <li class="page-item"><Link to="/Peminjaman" class="page-link text--semi-bold">Peminjaman</Link></li>
+                            <ul className="pagination">
+                                <li className="page-item"><Link to="/Peminjaman" className="page-link text--semi-bold">Peminjaman</Link></li>
                             </ul>
                         </nav>
                 </div>
-                <div className="container-fluid">
+                <div>
                     <div className="listpeminjaman-item__wrapper">
                         {peminjaman.map(peminjaman => (
                                 <div className="listpeminjaman-item__wrapper" key={peminjaman.transaksiID}>
@@ -62,7 +62,8 @@ const Listpeminjaman = () => {
                                         judulbuku={detilpeminjaman.judulbuku}
                                         harga={detilpeminjaman.harga}
                                         jumlah={detilpeminjaman.jumlah}
-                                        subtotal={detilpeminjaman.subtotal}
+                                        denda={detilpeminjaman.denda}
+                                        total={detilpeminjaman.total}
                                         status={detilpeminjaman.status}/>
                                 ))}
                             </div>
