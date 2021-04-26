@@ -186,11 +186,23 @@ app.post('/retrieveduedate', function(req,res) {
 });
 
 //Get data Barang from Barang table
-app.get('/retrievetransaksi', function (req, res) {
-  con.query('SELECT * FROM transaksi', (error, rows,field)  => {
-      if (error) throw error;
-      return res.send(rows);
-  });
+app.post('/retrievetransaksi', function (req, res) {
+  const transaksiid = req.body.	transaksiid;
+
+  con.query('SELECT * FROM transaksi WHERE transaksiid = ?', 
+    transaksiid, 
+      (err, result) => {
+        if (err) {
+          res.send({ err: err });
+        }
+  
+        if (result.length > 0) {
+              res.send(result);
+        } else {
+          res.send({ message: "Transaction is empty" });
+        }
+      }
+    );
 });
 
 app.post('/transaksidetail/', (req,res) => {
@@ -199,12 +211,13 @@ app.post('/transaksidetail/', (req,res) => {
   const judulbuku = req.body.judulbuku;
   const harga = req.body.harga;
   const jumlah = req.body.jumlah;
-  const subtotal = req.body.subtotal;
+  const denda = req.body.denda;
+  const total = req.body.total;
   const status = req.body.status;
 
 
-  con.query('INSERT INTO detiltransaksi (transaksiid,kodebuku,judulbuku,harga,jumlah,subtotal,status) VALUES (?,?,?,?,?,?,?)',
-   [transaksiid,kodebuku,judulbuku,harga,jumlah,subtotal,status],
+  con.query('INSERT INTO detiltransaksi (transaksiid,kodebuku,judulbuku,harga,jumlah,denda,total,status) VALUES (?,?,?,?,?,?,?,?)',
+   [transaksiid,kodebuku,judulbuku,harga,jumlah,denda,total,status],
     (err,result) => {
       if(err) {
         console.log(err);
@@ -217,7 +230,7 @@ app.post('/transaksidetail/', (req,res) => {
 });
 
 app.post('/retrievedetiltransaksi', function(req,res) {
-  const 	transaksiid = req.body.	transaksiid;
+  const transaksiid = req.body.	transaksiid;
 
   con.query('SELECT * FROM detiltransaksi WHERE transaksiid = ?', 
     transaksiid, 

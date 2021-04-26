@@ -3,13 +3,17 @@ import Axios from 'axios'
 
 import '../scss/detilpeminjaman.scss'
 
-const Detilpeminjaman = ({transaksiid,judulbuku,harga,jumlah,total,denda,status}) => {
+const Detilpeminjaman = ({detiltransaksiid,transaksiid,judulbuku,harga,jumlah,total,denda,status}) => {
     const [jumlahdenda,setJumlahdenda] = useState(denda);
+    const [totaltransaksi,setTotaltransaksi] = useState(total);
+    const [statuspinjam,setStatuspinjam] = useState(status);
+
+    const [detilpeminjaman,setDetilpeminjaman] = useState ([])
 
     //var dendakembali = JSON.parse(localStorage.getItem('subdenda'))
 
     useEffect(() => {
-        Axios.post("http://localhost:3001/retrieveduedate",
+        Axios.post("http://localhost:3001/retrievedate",
             {
                 transaksiid: transaksiid
             }).then((response) => {
@@ -17,29 +21,29 @@ const Detilpeminjaman = ({transaksiid,judulbuku,harga,jumlah,total,denda,status}
                     console.log(response.data.message)
                 } else {
                     if(response.data){
-                        localStorage.setItem('duedate', JSON.stringify(response.data));
-                        
+                        localStorage.setItem('date', JSON.stringify(response.data));
                     }
                 }
             });
     }, [])
 
+
     const returnbook = () =>{
-        const duedate = JSON.parse(localStorage.getItem('duedate'));
+        const tanggal = JSON.parse(localStorage.getItem('date'))
+        const tglpinjam = tanggal[0].tglpinjam;
+        const duedate = tanggal[0].duedate;
 
-        var today = new Date();
-        var masatenggang = new Date(duedate[0].duedate)
+        const today = new Date();
+        const masatenggang = new Date(duedate)
 
-        var returndate = new Date(today);
+        const returndate = new Date(today);
             returndate.setDate(returndate.getDate() + parseInt(10));
         
-        var tglkembali = returndate
-        var bataspengembalian = masatenggang
+        const tglkembali = returndate
+        const bataspengembalian = masatenggang
 
         const msperday = 1000 * 60 * 60 * 24;
-        var date1 = tglkembali.getTime();
-        var date2 =  bataspengembalian.getTime();
-        var difference = parseInt(Math.floor(( date1 - date2) / msperday));
+        var difference = parseInt(Math.floor(( tglkembali - bataspengembalian) / msperday));
 
         console.log(bataspengembalian);
         console.log(tglkembali);
@@ -49,10 +53,91 @@ const Detilpeminjaman = ({transaksiid,judulbuku,harga,jumlah,total,denda,status}
             const subdenda = 10000 * difference;
             console.log(subdenda)
             //localStorage.setItem('subdenda', JSON.stringify(subdenda))
-
             setJumlahdenda(subdenda)
+
+            const totaltrans =  subdenda + (harga * jumlah);
+            setTotaltransaksi(totaltrans)
+            setStatuspinjam("Denda")
+
+            Axios.put("http://localhost:3001/updatetransaksi", { 
+                denda: subdenda ,
+                status: statuspinjam,
+                detiltransaksiid: detiltransaksiid
+            }).then((response) => {
+                setDetilpeminjaman(detilpeminjaman.map((detilpeminjaman) => {
+                    return detilpeminjaman.detiltransaksiid === detiltransaksiid ? {
+                        detiltransaksiid: detiltransaksiid,
+                        transaksiid: transaksiid, 
+                        judulbuku: judulbuku, 
+                        harga: harga, 
+                        jumlah: jumlah,
+                        denda:denda, 
+                        total: total, 
+                        status: status
+                    } : detilpeminjaman
+                }))
+                alert("data updated")
+            }
+            );
+
+            Axios.put("http://localhost:3001/updatetotaltrans", { 
+                total: totaltrans,
+                detiltransaksiid: detiltransaksiid
+            }).then((response) => {
+                setDetilpeminjaman(detilpeminjaman.map((detilpeminjaman) => {
+                    return detilpeminjaman.detiltransaksiid === detiltransaksiid ? {
+                        detiltransaksiid: detiltransaksiid,
+                        transaksiid: transaksiid, 
+                        judulbuku: judulbuku, 
+                        harga: harga, 
+                        jumlah: jumlah,
+                        denda:denda, 
+                        total: total, 
+                        status: status
+                    } : detilpeminjaman
+                }))
+                alert("data updated")
+            }
+            );
+        } else if(difference <= 0){
+            difference=0;
+            const subdenda = 10000 * difference;
+            console.log(subdenda)
+            //localStorage.setItem('subdenda', JSON.stringify(subdenda))
+            setJumlahdenda(subdenda)
+
+            Axios.put("http://localhost:3001/updatetransaksi", { 
+                denda: subdenda ,
+                status: "Dikembalikan",
+                detiltransaksiid: detiltransaksiid
+            }).then((response) => {
+                setDetilpeminjaman(detilpeminjaman.map((detilpeminjaman) => {
+                    return detilpeminjaman.detiltransaksiid === detiltransaksiid ? {
+                        detiltransaksiid: detiltransaksiid,
+                        transaksiid: transaksiid, 
+                        judulbuku: judulbuku, 
+                        harga: harga, 
+                        jumlah: jumlah,
+                        denda:denda, 
+                        total: total, 
+                        status: status
+                    } : detilpeminjaman
+                }))
+                alert("data updated")
+            } 
+            );
         }
-        
+
+        Axios.post("http://localhost:3001/retrievedetiltransaksi",
+            {
+                transaksiid: transaksiid,
+            }).then((response) => {
+            if(response.data.message ){
+                console.log(response.data.message)
+            }else {
+                setDetilpeminjaman(response.data)
+            }
+            });
     }
 
     return (
@@ -81,12 +166,12 @@ const Detilpeminjaman = ({transaksiid,judulbuku,harga,jumlah,total,denda,status}
                         </td>
                         <td className="detilpeminjaman-table__colum">
                         <p className="text--uppercase text--small text--lightgrey">Total</p>
-                            <p className="text--medium">{total}</p>
+                            <p className="text--medium">{totaltransaksi}</p>
                             <p className="text--paragraph"></p>
                         </td>
                         <td className="table__colum">
                         <p className="text--uppercase text--small text--lightgrey">Status</p>
-                            <p className="text--medium">{status}</p>
+                            <p className="text--medium">{statuspinjam}</p>
                             <p className="text--paragraph"></p>
                         </td>
                         <td className="table__colum">

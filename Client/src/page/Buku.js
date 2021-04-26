@@ -6,6 +6,7 @@ import '../scss/buku.scss'
 
 const Buku = ({bookID, kodebuku,judulbuku, pengarang,status,stok}) => {
     const [buku,setBuku] = useState([]);
+    const [denda,setDenda] = useState(0);
 
     var today = new Date().toISOString().slice(0, 10);
 
@@ -26,7 +27,8 @@ const Buku = ({bookID, kodebuku,judulbuku, pengarang,status,stok}) => {
             judulbuku: judulbuku,
             harga: 10000,
             jumlah: 1,
-            subtotal: harga*jumlah,
+            denda: denda,
+            total: (harga*jumlah)+denda,
             status: 'Berhasil',
         }).then((response) => {
             {updatestok(kodebuku);}
